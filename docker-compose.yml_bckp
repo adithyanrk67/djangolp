@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_DB_HOST=localhost # Use 'localhost' for a locally running MySQL server
+      - DJANGO_DB_PORT=3306
+      - DJANGO_DB_NAME=loginapp_db
+      - DJANGO_DB_USER=login_user
+      - DJANGO_DB_PASSWORD=Login_app@123
+

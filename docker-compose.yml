@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: mysql:8
+    container_name: my-mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: RootPassword  # Change to your preferred root password
+      MYSQL_DATABASE: loginapp_db  # Change to your preferred database name
+      MYSQL_USER: login_user  # Change to your preferred database username
+      MYSQL_PASSWORD: Login_app@123  # Change to your preferred database password
+    ports:
+      - "3306:3306"
+    networks:
+      - my-network
+
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=loginapp_project.settings
+      - MYSQL_HOST=db  # This should match the service name of your MySQL container in the same Compose file
+    depends_on:
+      - db
+    networks:
+      - my-network
+
+networks:
+  my-network:
+

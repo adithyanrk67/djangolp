@@ -1,0 +1,18 @@
+from django.shortcuts import render, redirect
+from .models import User
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = User.objects.filter(username=username, password=password).first()
+        if user:
+            return redirect('user_details', user_id=user.id)
+        else:
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    return render(request, 'login.html')
+
+def user_details(request, user_id):
+    user = User.objects.get(id=user_id)
+    return render(request, 'user_details.html', {'user': user})
+
