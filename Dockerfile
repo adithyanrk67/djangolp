@@ -18,9 +18,9 @@ COPY . /app/
 EXPOSE 8000
 
 # Run migrations before starting the Django application
-RUN python3 manage.py makemigrations
-RUN python3 manage.py migrate
+RUN python manage.py makemigrations
+RUN python manage.py migrate
 
 # Start the Django application
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
