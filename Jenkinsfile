@@ -22,11 +22,6 @@ pipeline {
                 sh "docker-compose up -d"
             }
         }
-        stage('Check Docker Images') {
-            steps {
-                sh "docker images"
-            }
-        }
         stage('Push the image') {
             steps {
                 withCredentials([
