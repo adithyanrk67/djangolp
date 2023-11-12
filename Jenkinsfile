@@ -24,7 +24,7 @@ pipeline {
         stage('Push the image') {
             steps {
                 withCredentials([
-                    //string(credentialsId: 'github_token_dlp', variable: 'GITHUB_TOKEN'),
+                    string(credentialsId: 'github_token_dlp', variable: 'GITHUB_TOKEN'),
                     string(credentialsId: 'dockerhub_dlp', variable: 'DOCKER_PASSWORD')
                 ]) {
                     sh "docker login -u vadakkan01 -p \$DOCKER_PASSWORD \$DOCKER_REGISTRY"
